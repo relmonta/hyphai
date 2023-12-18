@@ -1,0 +1,11 @@
+src/dist
+src/build
+src/*.egg-info
+__pycache__
+*/__pycache__
+*/*/__pycache__
+.vscode
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+examples/.ipynb_checkpoints
