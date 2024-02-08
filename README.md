@@ -19,7 +19,7 @@ These results suggest that the proposed hybrid Physics-AI architecture provides 
 ### Estimated velocity field
 <img src="docs/plots/hyphai-1/202101021200-velocity-gridlines.png" alt="Alt Text" style="width:70%;">
 
-### Full disk forecasts
+### Inference on full disk, without any specific training.
 ![](docs/animations/hyphai-1/202101011200-full-disk.gif)
 
 ## Citation
