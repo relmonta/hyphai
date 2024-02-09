@@ -20,4 +20,4 @@ In this directory, you will find the source code for the project. The source cod
 
   * `dataset.py`: This file contains the torch DataSet class used in the project.
 
-  * `trainers.py`: This file contains the training code used in the project. This file require to request the data from the EUMETSAT. 100 training samples are available at ![](https://zenodo.org/badge/DOI/10.5281/zenodo.10642094.svg).
+  * `trainers.py`: This file contains the training code used in the project. This file require to request the data from the EUMETSAT. 100 training samples are available at [![](https://zenodo.org/badge/DOI/10.5281/zenodo.10642094.svg)](https://zenodo.org/doi/10.5281/zenodo.10642093).
