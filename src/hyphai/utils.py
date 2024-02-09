@@ -2,9 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import os
+import torch
 from PIL import Image
 import datetime
 import matplotlib.patches as mpatches
+from hyphai.metrics import *
+from sklearn.metrics import confusion_matrix
+
 # Cloud types
 CLOUD_TYPE_12 = {'0': 'No Cloud',
                  '1': 'Very low clouds',
@@ -32,6 +36,8 @@ CT_12_COLOR_MAP = [[0.39215686, 0.39215686, 0.39215686],
                    [0.0, 0.94117647, 0.94117647],
                    [0.35294118, 0.78431373, 0.62745098],
                    [1, 0.6, 1]]
+
+MRG = 10  # Margin to remove from the borders before computing the scores, to avoid border effects in the metrics as we don't apply any special treatment to the borders.
 
 def load_data(name: str, t: int, bounds: tuple = (280, 1740, 256, 256)) -> np.ndarray:
     """Get satellite data at time t
@@ -186,3 +192,91 @@ def plot_velocity(v_field, save_to="velocity_field"):
     plt.savefig(save_to + f'.{ext}', dpi=300, format=ext, bbox_inches='tight') 
     plt.show()
     print(f"Figure saved to {save_to}.{ext}")  
+
+
+def isnan(x):
+    """Checks if a tensor or a list of tensors contains NaN.
+
+    Args:
+        x (Tensor or list of Tensors) : Tensor or list of tensors to check.
+    
+    Returns:
+        bool : True if x contains NaN, False otherwise.
+    """
+    if torch.is_tensor(x):
+        return torch.isnan(x).any()
+    elif isinstance(x, list):
+        for element in x:
+            if isnan(element):
+                return True
+        return False
+    else:
+        raise TypeError("Invalid type for isnan")
+
+
+def compute_val_metrics(y_pred: np.ndarray, y_prob: np.ndarray, y_true: np.ndarray,
+                        leadtime: int, n_classes: int, metrics_dict: dict, n_tests: int,
+                        add_hausdorff: bool = True) -> dict:
+    """Compute validation metrics over one prediction and update the metrics dictionary.
+
+    Args:
+        y_pred (np.ndarray): Predicted labels.
+        y_prob (np.ndarray): Predicted probabilities.
+        y_true (np.ndarray): True labels.
+        leadtime (int): Leadtime.
+        n_classes (int): Number of classes.
+        metrics_dict (dict): Dictionary containing the metrics.
+        n_tests (int): Number of tests.
+        add_hausdorff (bool, optional): Whether to compute the Hausdorff distance. Defaults to True.
+
+    Returns:
+        dict: Updated metrics dictionary.
+    """
+    if metrics_dict is None:
+        metrics_dict = {}
+        metrics_dict['confusion_matrix'] = np.zeros(
+            (n_tests, leadtime, n_classes, n_classes))
+        metrics_dict['avg_ma_f1'] = np.empty((n_tests, leadtime))
+        metrics_dict['avg_ma_precision'] = np.empty(
+            (n_tests, leadtime))
+        metrics_dict['avg_ma_recall'] = np.empty((n_tests, leadtime))
+        metrics_dict['avg_ma_iou'] = np.empty((n_tests, leadtime))
+        if add_hausdorff:
+            metrics_dict['mean_hausdorff'] = np.empty((n_tests, leadtime))
+        metrics_dict['avg_acc'] = np.empty((n_tests, leadtime))
+        # metrics_dict['avg_cce'] = np.empty((n_tests, leadtime))
+        metrics_dict['steps_done'] = 0
+    ind = metrics_dict['steps_done']
+    # check if ind is not out of bounds
+    if ind >= n_tests:
+        print(
+            f"Error : Trying to update metrics_dict with index {ind} but n_tests is {n_tests}")
+        return metrics_dict
+    # There is no specific treatment of the borders in the model so we don't take them into account
+    obs = y_true[:, MRG:-MRG, MRG:-MRG]
+    pred = y_pred[:, MRG:-MRG, MRG:-MRG]
+    probs = y_prob[:, MRG:-MRG, MRG:-MRG]
+    for l in range(leadtime):
+        metrics_dict['confusion_matrix'][ind, l, ...] = confusion_matrix(
+            obs[l].flatten(), pred[l].flatten(), labels=np.arange(n_classes))
+    if add_hausdorff:
+        # Hausdorff distance
+        metrics_dict['mean_hausdorff'][ind] = np.mean(
+            hausdorff(obs, pred), axis=1)
+    # macro-averaged F1 score
+    f1, p, r = avg_f1_score(obs, pred, average='macro')
+    metrics_dict['avg_ma_f1'][ind] = f1
+    metrics_dict['avg_ma_precision'][ind] = p
+    metrics_dict['avg_ma_recall'][ind] = r
+    # macro-averaged IoU score
+    metrics_dict['avg_ma_iou'][ind] = avg_iou_score(
+        obs, pred, average='macro')
+    # Accuracy
+    metrics_dict['avg_acc'][ind] = avg_accuracy(
+        obs, pred, cmatrices=metrics_dict['confusion_matrix'][ind])
+    # Cross-entropy
+    # metrics_dict['avg_cce'][ind] = cce_score(obs, probs)
+    metrics_dict['steps_done'] += 1
+
+    return metrics_dict
+
