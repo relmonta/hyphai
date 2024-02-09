@@ -4,7 +4,7 @@ This folder contains example notebooks for a quick hands-on experience with HyPh
 
 ## Files and Notebooks
 
-1. **data:** The data sample used in the examples is not included in this repository. It is available under request, please contact the authors. However, cloud types data for a smaller region can be downloaded from [https://meteofrance.github.io/meteonet/english/data/satellite/](https://meteofrance.github.io/meteonet/english/data/satellite/)
+1. **data:** The data sample used in the examples.
    
 2. **full_dl_model_forecast_example.ipynb:** Jupyter notebook with the U-Net model used for comparison. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/relmonta/hyphai/blob/master/examples/full_dl_model_forecast_example.ipynb)
 
