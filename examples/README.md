@@ -4,7 +4,7 @@ This folder contains example notebooks for a quick hands-on experience with HyPh
 
 ## Files and Notebooks
 
-1. **data:** The data sample used in the examples.
+1. **data:** The data sample used in the examples. Copyright (2024) EUMETSAT.
    
 2. **full_dl_model_forecast_example.ipynb:** Jupyter notebook with the U-Net model used for comparison. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/relmonta/hyphai/blob/master/examples/full_dl_model_forecast_example.ipynb)
 
