@@ -1,5 +1,5 @@
 # HyPhAI: Hybrid Physics-AI Approach for Cloud Cover Nowcasting
-This repository contains the source code for the paper "Hybrid Physics-AI Architecture for Cloud Cover Nowcasting" by [Rachid El Montassir](https://www.linkedin.com/in/rachid-elmontassir/), [Olivier Pannekoucke](https://github.com/opannekoucke) and [Corentin Lepeyre](https://github.com/clapeyre).
+This repository contains the source code for the paper "[Hybrid Physics-AI Architecture for Cloud Cover Nowcasting](https://egusphere.copernicus.org/preprints/2024/egusphere-2023-3078)" by [Rachid El Montassir](https://www.linkedin.com/in/rachid-elmontassir/), [Olivier Pannekoucke](https://github.com/opannekoucke) and [Corentin Lepeyre](https://github.com/clapeyre).
 
 [![DOI](https://zenodo.org/badge/733070317.svg)](https://zenodo.org/doi/10.5281/zenodo.10401953)
 ## Abstract
@@ -24,16 +24,18 @@ These results suggest that the proposed hybrid Physics-AI architecture provides 
 
 ## Citation
 To cite this work, please use the following bibtex entry:
+
 ```
-@article{elmontassir2024hyphai,
-  title={Hybrid Physics-AI Architecture for Cloud Cover Nowcasting},
-  author={El Montassir, Rachid and Pannekoucke, Olivier and Lapeyre, Corentin},
-  journal={Geoscientific Model Development},
-  year={2024},
-  publisher={Copernicus GmbH},
-  %doi={Not yet available}
+@Article{egusphere-2023-3078,
+  AUTHOR = {El Montassir, R. and Pannekoucke, O. and Lapeyre, C.},
+  TITLE = {HyPhAI v1.0: Hybrid Physics-AI architecture for cloud cover nowcasting},
+  JOURNAL = {EGUsphere},
+  VOLUME = {2024},
+  YEAR = {2024},
+  PAGES = {1--38},
+  URL = {https://egusphere.copernicus.org/preprints/2024/egusphere-2023-3078/},
+  DOI = {10.5194/egusphere-2023-3078}
 }
 ```
-
 ## License
 This project is licensed under the CeCILL-B license - see the [LICENSE](LICENSE.md) file for details.
