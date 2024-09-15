@@ -1,4 +1,4 @@
-# HyPhAICC v1.0: A Hybrid Physics-AI approach for probability fields advection, application to cloud cover nowcasting
+# HyPhAICC
 This repository contains the source code for the paper "[HyPhAICC v1.0: a hybrid physics–AI approach for probability fields advection shown through an application to cloud cover nowcasting](https://doi.org/10.5194/gmd-17-6657-2024)" by [Rachid El Montassir](https://www.linkedin.com/in/rachid-elmontassir/), [Olivier Pannekoucke](https://github.com/opannekoucke) and [Corentin Lepeyre](https://github.com/clapeyre).
 
 [![DOI](https://zenodo.org/badge/733070317.svg)](https://zenodo.org/doi/10.5281/zenodo.10401953)
