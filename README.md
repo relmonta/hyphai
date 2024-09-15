@@ -1,5 +1,5 @@
 # HyPhAICC v1.0: A Hybrid Physics-AI approach for probability fields advection, application to cloud cover nowcasting
-This repository contains the source code for the paper "[HyPhAICC v1.0: A Hybrid Physics-AI approach for probability fields advection, application to cloud cover nowcasting](https://egusphere.copernicus.org/preprints/2024/egusphere-2023-3078)" by [Rachid El Montassir](https://www.linkedin.com/in/rachid-elmontassir/), [Olivier Pannekoucke](https://github.com/opannekoucke) and [Corentin Lepeyre](https://github.com/clapeyre).
+This repository contains the source code for the paper "[HyPhAICC v1.0: a hybrid physics–AI approach for probability fields advection shown through an application to cloud cover nowcasting](https://doi.org/10.5194/gmd-17-6657-2024)" by [Rachid El Montassir](https://www.linkedin.com/in/rachid-elmontassir/), [Olivier Pannekoucke](https://github.com/opannekoucke) and [Corentin Lepeyre](https://github.com/clapeyre).
 
 [![DOI](https://zenodo.org/badge/733070317.svg)](https://zenodo.org/doi/10.5281/zenodo.10401953)
 
@@ -26,15 +26,16 @@ This work proposes a hybrid approach that combines Physics and Artificial Intell
 To cite this work, please use the following bibtex entry:
 
 ```
-@Article{egusphere-2023-3078,
+@Article{elmontassir_hyphaicc_2024,
   AUTHOR = {El Montassir, R. and Pannekoucke, O. and Lapeyre, C.},
-  TITLE = {HyPhAICC v1.0: A Hybrid Physics-AI approach for probability fields advection, application to cloud cover nowcasting},
-  JOURNAL = {EGUsphere},
-  VOLUME = {2024},
+  TITLE = {HyPhAICC v1.0: a hybrid physics--AI approach for probability fields advection shown through an application to cloud cover nowcasting},
+  JOURNAL = {Geoscientific Model Development},
+  VOLUME = {17},
   YEAR = {2024},
-  PAGES = {1--38},
-  URL = {https://egusphere.copernicus.org/preprints/2024/egusphere-2023-3078/},
-  DOI = {10.5194/egusphere-2023-3078}
+  NUMBER = {17},
+  PAGES = {6657--6681},
+  URL = {https://gmd.copernicus.org/articles/17/6657/2024/},
+  DOI = {10.5194/gmd-17-6657-2024}
 }
 ```
 ## License
